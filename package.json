@@ -71,6 +71,7 @@
     "eslint-plugin-cypress": "^2.10.3",
     "husky": "^7.0.1",
     "jest": "27.0.3",
+    "jest-marbles": "^2.5.1",
     "jest-preset-angular": "9.0.3",
     "prettier": "^2.3.1",
     "ts-jest": "27.0.3",
