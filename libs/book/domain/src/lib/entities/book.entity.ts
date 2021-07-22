@@ -1,4 +1,4 @@
-export type UniqueId = string;
+export type VolumeId = string;
 export type URL = string;
 export type Language = string;
 export type DateTimeString = string;
@@ -10,14 +10,14 @@ export interface Price {
 
 export interface IndustryIdentifier {
   type: string;
-  identifier: UniqueId;
+  identifier: VolumeId;
 }
 
 export interface BookEntity {
-  id: UniqueId;
-  etag: string;
-  selfLink: URL;
-  volumeInfo: {
+  id: VolumeId;
+  etag?: string;
+  selfLink?: URL;
+  volumeInfo?: {
     title: string;
     authors: string[];
     publisher: string;
@@ -41,7 +41,7 @@ export interface BookEntity {
     canonicalVolumeLink: URL;
     industryIdentifiers: IndustryIdentifier[];
   };
-  saleInfo: {
+  saleInfo?: {
     country: string;
     saleability: string;
     coisEbookuntry: boolean;
@@ -49,7 +49,7 @@ export interface BookEntity {
     retailPrice: Price;
     buyLink: URL;
   };
-  searchInfo: {
+  searchInfo?: {
     textSnippet: string;
   };
 }

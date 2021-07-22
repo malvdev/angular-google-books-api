@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
-import { BookEntity } from '../entities';
+import { BookEntity, VolumeId } from '../entities';
 
 export const API_PATH = 'https://www.googleapis.com/books/v1/volumes';
 
@@ -19,7 +19,7 @@ export class BookService {
       .pipe(map((books) => books.items || []));
   }
 
-  retrieveBook(volumeId: string): Observable<BookEntity> {
+  retrieveBook(volumeId: VolumeId): Observable<BookEntity> {
     return this._http.get<BookEntity>(`${this._apiPath}/${volumeId}`);
   }
 }
