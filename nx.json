@@ -27,6 +27,9 @@
     ]
   },
   "projects": {
+    "book-domain": {
+      "tags": []
+    },
     "shell": {
       "tags": []
     },
