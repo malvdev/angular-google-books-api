@@ -30,7 +30,7 @@
       "projectType": "library",
       "root": "libs/book/feature-search",
       "sourceRoot": "libs/book/feature-search/src",
-      "prefix": "angular-google-books-api",
+      "prefix": "app-book",
       "architect": {
         "test": {
           "builder": "@nrwl/jest:jest",
@@ -46,6 +46,31 @@
             "lintFilePatterns": [
               "libs/book/feature-search/src/**/*.ts",
               "libs/book/feature-search/src/**/*.html"
+            ]
+          }
+        }
+      }
+    },
+    "shared-ui": {
+      "projectType": "library",
+      "root": "libs/shared/ui",
+      "sourceRoot": "libs/shared/ui/src",
+      "prefix": "app-shared",
+      "architect": {
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/shared/ui"],
+          "options": {
+            "jestConfig": "libs/shared/ui/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/shared/ui/src/**/*.ts",
+              "libs/shared/ui/src/**/*.html"
             ]
           }
         }
@@ -68,7 +93,10 @@
             "tsConfig": "apps/shell/tsconfig.app.json",
             "inlineStyleLanguage": "scss",
             "assets": ["apps/shell/src/favicon.ico", "apps/shell/src/assets"],
-            "styles": ["./node_modules/@angular/material/prebuilt-themes/purple-green.css", "apps/shell/src/styles.scss"],
+            "styles": [
+              "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
+              "apps/shell/src/styles.scss"
+            ],
             "scripts": []
           },
           "configurations": {
