@@ -10,6 +10,8 @@ import { environment } from '../environments/environment';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 
+import { BookFeatureSearchModule } from '@libs/google-books-api/book/feature-search';
+
 @NgModule({
   declarations: [AppComponent],
   imports: [
@@ -28,6 +30,7 @@ import { AppRoutingModule } from './app-routing.module';
     ),
     EffectsModule.forRoot([]),
     !environment.production ? StoreDevtoolsModule.instrument() : [],
+    BookFeatureSearchModule,
     AppRoutingModule,
   ],
   providers: [],
