@@ -13,7 +13,7 @@
           "error",
           {
             "type": "attribute",
-            "prefix": "angularGoogleBooksApi",
+            "prefix": "appBook",
             "style": "camelCase"
           }
         ],
@@ -21,7 +21,7 @@
           "error",
           {
             "type": "element",
-            "prefix": "angular-google-books-api",
+            "prefix": "app-book",
             "style": "kebab-case"
           }
         ]
