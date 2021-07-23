@@ -15,6 +15,9 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
+      "@libs/google-books-api/book/feature-search": [
+        "libs/book/feature-search/src/index.ts"
+      ],
       "@libs/google-books-api/book/domain": ["libs/book/domain/src/index.ts"]
     }
   },

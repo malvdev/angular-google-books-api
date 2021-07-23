@@ -26,6 +26,31 @@
         }
       }
     },
+    "book-feature-search": {
+      "projectType": "library",
+      "root": "libs/book/feature-search",
+      "sourceRoot": "libs/book/feature-search/src",
+      "prefix": "angular-google-books-api",
+      "architect": {
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/book/feature-search"],
+          "options": {
+            "jestConfig": "libs/book/feature-search/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/book/feature-search/src/**/*.ts",
+              "libs/book/feature-search/src/**/*.html"
+            ]
+          }
+        }
+      }
+    },
     "shell": {
       "projectType": "application",
       "root": "apps/shell",
