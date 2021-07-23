@@ -1,11 +1,36 @@
 {
   "version": 1,
   "projects": {
+    "book-domain": {
+      "projectType": "library",
+      "root": "libs/book/domain",
+      "sourceRoot": "libs/book/domain/src",
+      "prefix": "app-book",
+      "architect": {
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/book/domain"],
+          "options": {
+            "jestConfig": "libs/book/domain/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/book/domain/src/**/*.ts",
+              "libs/book/domain/src/**/*.html"
+            ]
+          }
+        }
+      }
+    },
     "shell": {
       "projectType": "application",
       "root": "apps/shell",
       "sourceRoot": "apps/shell/src",
-      "prefix": "angular-google-books-api",
+      "prefix": "app",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
