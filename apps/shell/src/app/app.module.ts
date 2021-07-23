@@ -11,6 +11,7 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 
 import { BookFeatureSearchModule } from '@libs/google-books-api/book/feature-search';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [AppComponent],
@@ -18,6 +19,7 @@ import { BookFeatureSearchModule } from '@libs/google-books-api/book/feature-sea
     BrowserModule,
     RouterModule,
     HttpClientModule,
+    BrowserAnimationsModule,
     StoreModule.forRoot(
       {},
       {
