@@ -13,7 +13,7 @@
           "error",
           {
             "type": "attribute",
-            "prefix": "appBookUi",
+            "prefix": "appUi",
             "style": "camelCase"
           }
         ],
@@ -21,7 +21,7 @@
           "error",
           {
             "type": "element",
-            "prefix": "app-book-ui",
+            "prefix": "app-ui",
             "style": "kebab-case"
           }
         ]

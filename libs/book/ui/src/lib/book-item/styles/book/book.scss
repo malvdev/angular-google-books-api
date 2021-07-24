@@ -1,0 +1,17 @@
+@import './__author/book__author.scss';
+@import './__authors/book__authors.scss';
+@import './__description/book__description.scss';
+@import './__img/book__img.scss';
+@import './__link/book__link.scss';
+@import './__placeholder/book__placeholder.scss';
+@import './__tilte/book__tilte.scss';
+
+.app-book {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+
+  @media screen and (min-width: 425px) {
+    grid-template-columns: 120px 1fr;
+  }
+}

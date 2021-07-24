@@ -1,0 +1,33 @@
+<article class="app-book">
+  <div class="app-book__background">
+    <a
+      *ngIf="thumbnail; else placeholder"
+      [routerLink]="['/book', id]"
+      href="#"
+      class="app-book__link"
+    >
+      <img [src]="thumbnail" class="app-book__img" alt="Thumbnail for book" />
+    </a>
+    <ng-template #placeholder>
+      <div class="app-book__placeholder">No image</div>
+    </ng-template>
+  </div>
+  <div class="app-book__content">
+    <a [routerLink]="['/book', id]" href="#" class="app-book__link">
+      <h2 class="app-book__tilte">
+        {{ title }}
+      </h2>
+    </a>
+    <div class="app-book__authors">
+      <span *ngFor="let author of authors" class="app-book__author">
+        {{ author }}
+      </span>
+      <span *ngIf="publishedDate" title="Published date">
+        · {{ publishedDate | date: 'Y' }}
+      </span>
+    </div>
+    <p class="app-book__description">
+      {{ description | appTruncate: 220 }}
+    </p>
+  </div>
+</article>
