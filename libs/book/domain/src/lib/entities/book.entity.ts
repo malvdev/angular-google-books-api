@@ -17,29 +17,28 @@ export interface BookEntity {
   id: VolumeId;
   etag?: string;
   selfLink?: URL;
-  volumeInfo?: {
+  volumeInfo: {
     title: string;
     authors: string[];
-    publisher: string;
-    publishDate: DateTimeString;
     printType: string;
     pageCount: number;
     description: string;
-    averageRating: number;
-    ratingsCount: number;
+    publisher: string;
+    publishedDate: string;
     categories: string[];
     language: string;
-    previewLink: URL;
-    infoLink: URL;
     imageLinks: {
-      thumbnail: URL;
-      smallThumbnail: URL;
-      medium: URL;
-      large: URL;
-      extraLarge: URL;
+      thumbnail?: URL;
+      smallThumbnail?: URL;
+      medium?: URL;
+      large?: URL;
+      extraLarge?: URL;
     };
-    canonicalVolumeLink: URL;
-    industryIdentifiers: IndustryIdentifier[];
+    previewLink?: URL;
+    infoLink?: URL;
+    averageRating?: number;
+    ratingsCount?: number;
+    industryIdentifiers?: IndustryIdentifier[];
   };
   saleInfo?: {
     country: string;
