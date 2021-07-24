@@ -51,11 +51,36 @@
         }
       }
     },
+    "book-ui": {
+      "projectType": "library",
+      "root": "libs/book/ui",
+      "sourceRoot": "libs/book/ui/src",
+      "prefix": "app-book-ui",
+      "architect": {
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/book/ui"],
+          "options": {
+            "jestConfig": "libs/book/ui/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/book/ui/src/**/*.ts",
+              "libs/book/ui/src/**/*.html"
+            ]
+          }
+        }
+      }
+    },
     "shared-ui": {
       "projectType": "library",
       "root": "libs/shared/ui",
       "sourceRoot": "libs/shared/ui/src",
-      "prefix": "app-shared",
+      "prefix": "app-shared-ui",
       "architect": {
         "test": {
           "builder": "@nrwl/jest:jest",
