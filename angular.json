@@ -76,6 +76,31 @@
         }
       }
     },
+    "shared-pipes": {
+      "projectType": "library",
+      "root": "libs/shared/pipes",
+      "sourceRoot": "libs/shared/pipes/src",
+      "prefix": "app-shared-pipe",
+      "architect": {
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/shared/pipes"],
+          "options": {
+            "jestConfig": "libs/shared/pipes/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/shared/pipes/src/**/*.ts",
+              "libs/shared/pipes/src/**/*.html"
+            ]
+          }
+        }
+      }
+    },
     "shared-ui": {
       "projectType": "library",
       "root": "libs/shared/ui",

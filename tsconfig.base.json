@@ -16,11 +16,12 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@libs/google-books-api/book/ui": ["libs/book/ui/src/index.ts"],
+      "@libs/google-books-api/shared/pipes": ["libs/shared/pipes/src/index.ts"],
       "@libs/google-books-api/book/domain": ["libs/book/domain/src/index.ts"],
       "@libs/google-books-api/book/feature-search": [
         "libs/book/feature-search/src/index.ts"
       ],
+      "@libs/google-books-api/book/ui": ["libs/book/ui/src/index.ts"],
       "@libs/google-books-api/shared/ui": ["libs/shared/ui/src/index.ts"]
     }
   },

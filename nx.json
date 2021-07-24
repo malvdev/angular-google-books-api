@@ -36,6 +36,9 @@
     "book-ui": {
       "tags": []
     },
+    "shared-pipes": {
+      "tags": []
+    },
     "shared-ui": {
       "tags": []
     },
