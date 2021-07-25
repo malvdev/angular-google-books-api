@@ -35,13 +35,19 @@
     <mat-form-field>
       <mat-label>Language</mat-label>
       <mat-select formControlName="langRestrict">
-        <mat-option value="ru">Russian</mat-option>
+        <mat-option value="">Default</mat-option>
+        <mat-option value="fr">France</mat-option>
+        <mat-option value="de">German</mat-option>
         <mat-option value="en">English</mat-option>
+        <mat-option value="es">Spanish</mat-option>
+        <mat-option value="ja">Japanese</mat-option>
+        <mat-option value="ru">Russian</mat-option>
       </mat-select>
     </mat-form-field>
     <mat-form-field>
       <mat-label>Order by</mat-label>
       <mat-select formControlName="orderBy">
+        <mat-option value="">Default</mat-option>
         <mat-option value="newest">Most recently published</mat-option>
         <mat-option value="relevance">Relevance to search terms</mat-option>
       </mat-select>
