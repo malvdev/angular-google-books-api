@@ -1,4 +1,11 @@
-import { ElementRef, EventEmitter, Output, ViewChild } from '@angular/core';
+import {
+  ElementRef,
+  EventEmitter,
+  Input,
+  OnInit,
+  Output,
+  ViewChild,
+} from '@angular/core';
 import { Component, ChangeDetectionStrategy } from '@angular/core';
 import {
   AbstractControl,
@@ -15,7 +22,7 @@ import { QueryParams } from '@libs/google-books-api/book/domain';
   styleUrls: ['./search-form.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class SearchFormComponent {
+export class SearchFormComponent implements OnInit {
   searchForm: FormGroup = new FormGroup({
     q: new FormControl('', [Validators.required]),
     langRestrict: new FormControl(''),
@@ -25,11 +32,22 @@ export class SearchFormComponent {
   @ViewChild('queryInput')
   queryInput: ElementRef;
 
+  @Input()
+  defaultFormParams: QueryParams;
+
   @Output()
   formSubmit: EventEmitter<QueryParams> = new EventEmitter<QueryParams>();
 
   get queryControl(): AbstractControl | null {
     return this.searchForm.get('q');
+  }
+
+  ngOnInit() {
+    if (this.defaultFormParams) {
+      for (const [key, value] of Object.entries(this.defaultFormParams)) {
+        this.searchForm.get(key)?.setValue(value);
+      }
+    }
   }
 
   resetQueryControl(): void {
