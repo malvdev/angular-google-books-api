@@ -1,0 +1,9 @@
+@import 'vars.scss';
+
+.app-main-template {
+  margin-top: 182px;
+
+  @media only all and (min-width: $mobile-m) {
+    margin-top: 135px;
+  }
+}

@@ -1,1 +1,29 @@
-<p>book-search works!</p>
+<header class="app-header">
+  <div class="app-header__container">
+    <h1 class="app-header__logo">Books</h1>
+    <app-ui-search-form
+      [defaultFormParams]="formParams"
+      (formSubmit)="search($event)"
+    ></app-ui-search-form>
+  </div>
+</header>
+<app-shared-ui-main-template class="app-main-template">
+  <ng-container *ngIf="(books$ | async)?.items?.length; else noBooks">
+    <app-ui-book-item-list
+      [books]="(books$ | async)?.items || []"
+    ></app-ui-book-item-list>
+  </ng-container>
+  <mat-paginator
+    [length]="(books$ | async)?.totalItems || 0"
+    [pageSize]="10"
+    (page)="handlePageEvent($event)"
+  >
+  </mat-paginator>
+</app-shared-ui-main-template>
+
+<ng-template #isLoading>
+  <div class="app-loader">Loading...</div>
+</ng-template>
+<ng-template #noBooks>
+  <div class="app-no-results">No results</div>
+</ng-template>
