@@ -24,7 +24,8 @@
             "prefix": "app-book",
             "style": "kebab-case"
           }
-        ]
+        ],
+        "@typescript-eslint/no-inferrable-types": "off"
       }
     },
     {
