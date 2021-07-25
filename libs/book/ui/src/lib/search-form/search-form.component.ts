@@ -43,7 +43,10 @@ export class SearchFormComponent implements OnInit {
   }
 
   ngOnInit() {
-    if (this.defaultFormParams) {
+    if (
+      this.defaultFormParams &&
+      Object.keys(this.defaultFormParams).length === 0
+    ) {
       for (const [key, value] of Object.entries(this.defaultFormParams)) {
         this.searchForm.get(key)?.setValue(value);
       }
