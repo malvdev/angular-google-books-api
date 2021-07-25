@@ -1,0 +1,17 @@
+@import 'vars.scss';
+
+.app-header__container {
+  display: grid;
+  width: 100%;
+  gap: 1rem;
+  grid-template-columns: 1fr;
+  max-width: 680px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 1rem;
+  box-sizing: border-box;
+
+  @media only all and (min-width: $mobile-m) {
+    grid-template-columns: max-content 1fr;
+  }
+}

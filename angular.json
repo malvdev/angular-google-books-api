@@ -26,6 +26,106 @@
         }
       }
     },
+    "book-feature-search": {
+      "projectType": "library",
+      "root": "libs/book/feature-search",
+      "sourceRoot": "libs/book/feature-search/src",
+      "prefix": "app-book",
+      "architect": {
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/book/feature-search"],
+          "options": {
+            "jestConfig": "libs/book/feature-search/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/book/feature-search/src/**/*.ts",
+              "libs/book/feature-search/src/**/*.html"
+            ]
+          }
+        }
+      }
+    },
+    "book-ui": {
+      "projectType": "library",
+      "root": "libs/book/ui",
+      "sourceRoot": "libs/book/ui/src",
+      "prefix": "app-book-ui",
+      "architect": {
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/book/ui"],
+          "options": {
+            "jestConfig": "libs/book/ui/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/book/ui/src/**/*.ts",
+              "libs/book/ui/src/**/*.html"
+            ]
+          }
+        }
+      }
+    },
+    "shared-pipes": {
+      "projectType": "library",
+      "root": "libs/shared/pipes",
+      "sourceRoot": "libs/shared/pipes/src",
+      "prefix": "app-shared-pipe",
+      "architect": {
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/shared/pipes"],
+          "options": {
+            "jestConfig": "libs/shared/pipes/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/shared/pipes/src/**/*.ts",
+              "libs/shared/pipes/src/**/*.html"
+            ]
+          }
+        }
+      }
+    },
+    "shared-ui": {
+      "projectType": "library",
+      "root": "libs/shared/ui",
+      "sourceRoot": "libs/shared/ui/src",
+      "prefix": "app-shared-ui",
+      "architect": {
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/shared/ui"],
+          "options": {
+            "jestConfig": "libs/shared/ui/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/shared/ui/src/**/*.ts",
+              "libs/shared/ui/src/**/*.html"
+            ]
+          }
+        }
+      }
+    },
     "shell": {
       "projectType": "application",
       "root": "apps/shell",
@@ -43,7 +143,13 @@
             "tsConfig": "apps/shell/tsconfig.app.json",
             "inlineStyleLanguage": "scss",
             "assets": ["apps/shell/src/favicon.ico", "apps/shell/src/assets"],
-            "styles": ["apps/shell/src/styles.scss"],
+            "stylePreprocessorOptions": {
+              "includePaths": ["apps/shell/src/assets/styles"]
+            },
+            "styles": [
+              "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
+              "apps/shell/src/styles.scss"
+            ],
             "scripts": []
           },
           "configurations": {

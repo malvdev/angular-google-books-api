@@ -1,0 +1,56 @@
+<form [formGroup]="searchForm" (ngSubmit)="onSubmit()" class="app-search-form">
+  <div class="app-search-form__field">
+    <input
+      #queryInput
+      formControlName="q"
+      class="app-search-form__input"
+      type="text"
+      name="q"
+      maxlength="2048"
+      autocapitalize="off"
+      spellcheck="false"
+      aria-label="Search"
+      placeholder="Search for a book"
+    />
+    <button
+      mat-icon-button
+      [hidden]="!queryControl?.value"
+      (click)="resetQueryControl()"
+      type="button"
+      class="app-search-form__reset"
+      aria-label="Clear input"
+    >
+      <mat-icon>close</mat-icon>
+    </button>
+    <button
+      mat-icon-button
+      type="submit"
+      class="app-search-form__submit"
+      aria-label="Submit form"
+    >
+      <mat-icon>search</mat-icon>
+    </button>
+  </div>
+  <div class="app-search-form__filter">
+    <mat-form-field>
+      <mat-label>Language</mat-label>
+      <mat-select formControlName="langRestrict">
+        <mat-option value="">Default</mat-option>
+        <mat-option value="fr">France</mat-option>
+        <mat-option value="de">German</mat-option>
+        <mat-option value="en">English</mat-option>
+        <mat-option value="es">Spanish</mat-option>
+        <mat-option value="ja">Japanese</mat-option>
+        <mat-option value="ru">Russian</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Order by</mat-label>
+      <mat-select formControlName="orderBy">
+        <mat-option value="">Default</mat-option>
+        <mat-option value="newest">Most recently published</mat-option>
+        <mat-option value="relevance">Relevance to search terms</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+</form>

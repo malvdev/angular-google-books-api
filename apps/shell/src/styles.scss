@@ -1,1 +1,17 @@
-/* You can add global styles to this file, and also import other style files */
+@import './assets/styles/styles.scss';
+
+body {
+  margin: 0;
+  font-family: Roboto, 'Helvetica Neue', sans-serif;
+  background-color: #fff;
+}
+
+a {
+  color: #1a0dab;
+  text-decoration: none;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0.1);
+
+  &:hover {
+    text-decoration: underline;
+  }
+}

@@ -1,0 +1,16 @@
+.app-search-form__input {
+  width: 100%;
+  padding: 0.8rem 5rem 0.8rem 1rem;
+  margin: 0px;
+  border: 1px solid transparent;
+  border-radius: var(--border-radius);
+  font-size: 1rem;
+  background-color: #fff;
+  box-shadow: var(--shadow);
+  transition: box-shadow 200ms cubic-bezier(0.4, 0, 0.2, 1);
+  outline: none;
+
+  &:focus {
+    box-shadow: 0 2px 8px 1px rgb(64 60 67 / 24%);
+  }
+}

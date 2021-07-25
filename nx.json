@@ -30,6 +30,18 @@
     "book-domain": {
       "tags": []
     },
+    "book-feature-search": {
+      "tags": []
+    },
+    "book-ui": {
+      "tags": []
+    },
+    "shared-pipes": {
+      "tags": []
+    },
+    "shared-ui": {
+      "tags": []
+    },
     "shell": {
       "tags": []
     },
