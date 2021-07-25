@@ -1,0 +1,8 @@
+.app-search-form__reset {
+  position: absolute;
+  right: 45px;
+
+  &[hidden] {
+    display: none;
+  }
+}
