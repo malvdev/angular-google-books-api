@@ -30,6 +30,7 @@ export interface BookEntity {
     imageLinks: {
       thumbnail?: URL;
       smallThumbnail?: URL;
+      small?: URL;
       medium?: URL;
       large?: URL;
       extraLarge?: URL;
