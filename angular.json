@@ -51,6 +51,31 @@
         }
       }
     },
+    "book-feature-single": {
+      "projectType": "library",
+      "root": "libs/book/feature-single",
+      "sourceRoot": "libs/book/feature-single/src",
+      "prefix": "app-book",
+      "architect": {
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/book/feature-single"],
+          "options": {
+            "jestConfig": "libs/book/feature-single/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/book/feature-single/src/**/*.ts",
+              "libs/book/feature-single/src/**/*.html"
+            ]
+          }
+        }
+      }
+    },
     "book-ui": {
       "projectType": "library",
       "root": "libs/book/ui",
