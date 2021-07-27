@@ -1,0 +1,6 @@
+<app-ui-header></app-ui-header>
+<app-shared-ui-main-template class="app-main-template">
+  <ng-container *ngIf="book$ | async as book">
+    <app-ui-book-single [book]="book"></app-ui-book-single>
+  </ng-container>
+</app-shared-ui-main-template>
