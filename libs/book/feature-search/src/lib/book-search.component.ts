@@ -29,9 +29,8 @@ export class BookSearchComponent implements OnInit {
 
   ngOnInit(): void {
     this._activatedRoute.queryParams.subscribe((params) => {
-      if (params && Object.keys(params).length === 0) {
+      if (params && Object.keys(params).length !== 0) {
         this.formParams = params as QueryParams;
-
         if (this.formParams?.q) {
           this.search(this.formParams);
         }

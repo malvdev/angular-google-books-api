@@ -1,0 +1,12 @@
+@import 'vars';
+
+.app-book-single__header {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+  min-height: 190px;
+
+  @media only all and (min-width: $mobile-m) {
+    grid-template-columns: 1fr 160px;
+  }
+}

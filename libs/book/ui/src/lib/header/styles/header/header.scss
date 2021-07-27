@@ -1,0 +1,11 @@
+@import './__link/header__link.scss';
+@import './__logo/header__logo.scss';
+
+.app-header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  background-color: #fff;
+  box-shadow: var(--shadow);
+}

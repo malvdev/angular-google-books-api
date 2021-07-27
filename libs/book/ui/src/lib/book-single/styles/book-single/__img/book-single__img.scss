@@ -1,0 +1,12 @@
+@import 'vars';
+
+.app-book-single__img {
+  max-width: 100%;
+  border-radius: 0.5rem;
+  overflow: hidden;
+
+  @media only all and (min-width: $mobile-m) {
+    max-height: 190px;
+    width: 160px;
+  }
+}
