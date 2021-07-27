@@ -26,8 +26,9 @@
         · {{ publishedDate | date: 'Y' }}
       </span>
     </div>
-    <p class="app-book__description">
-      {{ description | appTruncate: 220 }}
-    </p>
+    <p
+      class="app-book__description"
+      [innerHtml]="description | appTruncate: 220"
+    ></p>
   </div>
 </article>
