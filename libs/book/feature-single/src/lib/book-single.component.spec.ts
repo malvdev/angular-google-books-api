@@ -1,11 +1,11 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ActivatedRoute } from '@angular/router';
-import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { RouterTestingModule } from '@angular/router/testing';
+import { provideMockStore } from '@ngrx/store/testing';
 
 import { BookSingleModule, HeaderModule } from '@libs/google-books-api/book/ui';
 import { MainTemplateModule } from '@libs/google-books-api/shared/ui';
-import { BookService } from '@libs/google-books-api/book/domain';
+import { BookFacade } from '@libs/google-books-api/book/domain';
 
 import { BookSingleComponent } from './book-single.component';
 
@@ -17,14 +17,14 @@ describe('BookSingleComponent', () => {
     await TestBed.configureTestingModule({
       declarations: [BookSingleComponent],
       imports: [
-        HttpClientTestingModule,
         RouterTestingModule,
         MainTemplateModule,
         BookSingleModule,
         HeaderModule,
       ],
       providers: [
-        BookService,
+        provideMockStore({}),
+        BookFacade,
         {
           provide: ActivatedRoute,
           useValue: {
