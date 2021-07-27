@@ -35,21 +35,8 @@ export interface BookEntity {
       large?: URL;
       extraLarge?: URL;
     };
-    previewLink?: URL;
-    infoLink?: URL;
     averageRating?: number;
     ratingsCount?: number;
     industryIdentifiers?: IndustryIdentifier[];
-  };
-  saleInfo?: {
-    country: string;
-    saleability: string;
-    coisEbookuntry: boolean;
-    listPrice: Price;
-    retailPrice: Price;
-    buyLink: URL;
-  };
-  searchInfo?: {
-    textSnippet: string;
   };
 }
