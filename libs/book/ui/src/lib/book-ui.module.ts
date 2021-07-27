@@ -5,6 +5,7 @@ import { BookItemModule } from './book-item/book-item.module';
 import { BookItemListModule } from './book-item-list';
 import { SearchFormModule } from './search-form';
 import { BookSingleModule } from './book-single';
+import { HeaderModule } from './header';
 
 @NgModule({
   imports: [
@@ -13,6 +14,7 @@ import { BookSingleModule } from './book-single';
     BookItemListModule,
     SearchFormModule,
     BookSingleModule,
+    HeaderModule,
   ],
 })
 export class BookUiModule {}
