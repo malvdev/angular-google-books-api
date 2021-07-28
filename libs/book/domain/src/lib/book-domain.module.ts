@@ -3,8 +3,11 @@ import { CommonModule } from '@angular/common';
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 
-import * as fromBook from './application/+state/book/book.reducer';
-import { BookEffects } from './application/+state/book/book.effects';
+import {
+  BOOK_FEATURE_KEY,
+  reducer as BookReducer,
+  BookEffects,
+} from './application/+state/book';
 
 import { BookService } from './infrastructure';
 import { BookFacade } from './application';
@@ -12,7 +15,7 @@ import { BookFacade } from './application';
 @NgModule({
   imports: [
     CommonModule,
-    StoreModule.forFeature(fromBook.BOOK_FEATURE_KEY, fromBook.reducer),
+    StoreModule.forFeature(BOOK_FEATURE_KEY, BookReducer),
     EffectsModule.forFeature([BookEffects]),
   ],
   providers: [BookService, BookFacade],
