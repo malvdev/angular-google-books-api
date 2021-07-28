@@ -10,6 +10,9 @@ const routes: Routes = [
     path: 'book/:id',
     component: BookSingleComponent,
     canActivate: [BookExistsGuard],
+    data: {
+      title: 'Single book',
+    },
   },
 ];
 

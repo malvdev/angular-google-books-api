@@ -3,7 +3,15 @@ import { RouterModule, Routes } from '@angular/router';
 
 import { BookSearchComponent } from './book-search.component';
 
-const routes: Routes = [{ path: 'search', component: BookSearchComponent }];
+const routes: Routes = [
+  {
+    path: 'search',
+    component: BookSearchComponent,
+    data: {
+      title: 'Search a book',
+    },
+  },
+];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
