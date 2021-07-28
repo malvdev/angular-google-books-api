@@ -35,6 +35,7 @@ export class BookSearchComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit(): void {
+    this._bookFacade.initSearchBookPage();
     this.books$ = this._bookFacade.books$;
     this.totalItems$ = this._bookFacade.totalItems$;
     this.isLoading$ = this._bookFacade.bookLoaded$;
