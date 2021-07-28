@@ -12,6 +12,7 @@ export interface QueryParams {
   langRestrict?: string;
   orderBy?: string;
   startIndex?: number;
+  pageIndex?: number;
   maxResults?: number;
 }
 

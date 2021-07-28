@@ -1,12 +1,18 @@
-import { Component, ChangeDetectionStrategy, OnInit } from '@angular/core';
+import {
+  Component,
+  ChangeDetectionStrategy,
+  OnInit,
+  OnDestroy,
+} from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Observable } from 'rxjs';
 import { PageEvent } from '@angular/material/paginator';
+import { Observable, Subscription } from 'rxjs';
+import { take } from 'rxjs/operators';
 
 import {
-  BookService,
   QueryParams,
-  BooksResponse,
+  BookFacade,
+  BookEntity,
 } from '@libs/google-books-api/book/domain';
 
 @Component({
@@ -15,40 +21,56 @@ import {
   styleUrls: ['./book-search.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class BookSearchComponent implements OnInit {
-  books$: Observable<BooksResponse>;
+export class BookSearchComponent implements OnInit, OnDestroy {
+  books$: Observable<BookEntity[]>;
   totalItems$: Observable<number>;
   isLoading$: Observable<boolean>;
+  subscription$: Subscription;
   formParams: QueryParams;
 
   constructor(
-    private readonly _bookService: BookService,
+    private readonly _bookFacade: BookFacade,
     private readonly _router: Router,
     private readonly _activatedRoute: ActivatedRoute
   ) {}
 
   ngOnInit(): void {
+    this.books$ = this._bookFacade.books$;
+    this.totalItems$ = this._bookFacade.totalItems$;
+    this.isLoading$ = this._bookFacade.bookLoaded$;
+
     this._activatedRoute.queryParams.subscribe((params) => {
       if (params && Object.keys(params).length !== 0) {
-        this.formParams = params as QueryParams;
-        if (this.formParams?.q) {
-          this.search(this.formParams);
-        }
+        this.formParams = { ...params } as QueryParams;
+      }
+    });
+
+    this.subscription$ = this.books$.pipe(take(1)).subscribe((books) => {
+      if (!books.length) {
+        this.search(this.formParams);
       }
     });
   }
 
   search(params: QueryParams): void {
-    this.formParams = params;
-    this.books$ = this._bookService.searchBooks(params);
+    this.formParams = { ...params };
+    this._bookFacade.searchBook(this.formParams);
     this.setRouterQueryParams(this.formParams);
   }
 
   handlePageEvent(event: PageEvent): void {
-    this.books$ = this._bookService.searchBooks({
+    const params = {
       ...this.formParams,
+      pageIndex: event.pageIndex,
       startIndex: this.calculateStartIndex(event.pageIndex, event.pageSize),
-    });
+    };
+
+    this._bookFacade.searchBook(params);
+    this.setRouterQueryParams(params);
+  }
+
+  ngOnDestroy(): void {
+    this.subscription$.unsubscribe();
   }
 
   private calculateStartIndex(
@@ -62,9 +84,15 @@ export class BookSearchComponent implements OnInit {
     if (queryParams?.q) {
       this._router.navigate([], {
         relativeTo: this._activatedRoute,
-        queryParams: queryParams,
-        queryParamsHandling: 'merge',
+        queryParams: this.removeEmpty(queryParams),
+        queryParamsHandling: '',
       });
     }
+  }
+
+  private removeEmpty(obj: QueryParams) {
+    return Object.entries(obj)
+      .filter(([_, v]) => v !== '')
+      .reduce((acc, [k, v]) => ({ ...acc, [k]: v }), {});
   }
 }

@@ -2,8 +2,8 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ActivatedRoute } from '@angular/router';
+import { provideMockStore } from '@ngrx/store/testing';
 import { of } from 'rxjs';
 
 import { MainTemplateModule } from '@libs/google-books-api/shared/ui';
@@ -11,9 +11,9 @@ import {
   BookItemListModule,
   SearchFormModule,
 } from '@libs/google-books-api/book/ui';
+import { BookFacade } from '@libs/google-books-api/book/domain';
 
 import { BookSearchComponent } from './book-search.component';
-import { BookService } from '@libs/google-books-api/book/domain';
 
 describe('BookSearchComponent', () => {
   let component: BookSearchComponent;
@@ -24,7 +24,6 @@ describe('BookSearchComponent', () => {
       declarations: [BookSearchComponent],
       imports: [
         NoopAnimationsModule,
-        HttpClientTestingModule,
         RouterTestingModule,
         MatPaginatorModule,
         SearchFormModule,
@@ -32,7 +31,8 @@ describe('BookSearchComponent', () => {
         BookItemListModule,
       ],
       providers: [
-        BookService,
+        provideMockStore({}),
+        BookFacade,
         {
           provide: ActivatedRoute,
           useValue: {
