@@ -8,7 +8,7 @@
   </div>
 </header>
 <app-shared-ui-main-template class="app-main-template">
-  <ng-container *ngIf="isLoading$ | async; else isLoading">
+  <ng-container *ngIf="isLoaded$ | async; else isLoading">
     <ng-container *ngIf="books$ | async as books">
       <app-ui-book-item-list
         *ngIf="books.length; else noBooks"

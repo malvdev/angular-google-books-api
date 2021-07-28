@@ -7,7 +7,7 @@ import {
 import { ActivatedRoute, Router } from '@angular/router';
 import { PageEvent } from '@angular/material/paginator';
 import { Observable, of, Subscription } from 'rxjs';
-import { switchMap } from 'rxjs/operators';
+import { switchMap, take } from 'rxjs/operators';
 
 import {
   QueryParams,
@@ -24,7 +24,7 @@ import {
 export class BookSearchComponent implements OnInit, OnDestroy {
   books$: Observable<BookEntity[]>;
   totalItems$: Observable<number>;
-  isLoading$: Observable<boolean>;
+  isLoaded$: Observable<boolean>;
   activatedRouteSubscription$: Subscription;
   formParams: QueryParams;
 
@@ -45,7 +45,7 @@ export class BookSearchComponent implements OnInit, OnDestroy {
       });
 
     this.totalItems$ = this._bookFacade.totalItems$;
-    this.isLoading$ = this._bookFacade.bookLoaded$;
+    this.isLoaded$ = this._bookFacade.bookLoaded$;
     this.books$ = this._bookFacade.books$.pipe(
       switchMap((books) => {
         if (this.formParams && !books.length) {
