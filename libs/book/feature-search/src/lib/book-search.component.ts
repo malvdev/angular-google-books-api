@@ -1,7 +1,12 @@
-import { Component, ChangeDetectionStrategy, OnInit } from '@angular/core';
+import {
+  Component,
+  ChangeDetectionStrategy,
+  OnInit,
+  OnDestroy,
+} from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { PageEvent } from '@angular/material/paginator';
-import { Observable, of } from 'rxjs';
+import { Observable, of, Subscription } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
 
 import {
@@ -16,10 +21,11 @@ import {
   styleUrls: ['./book-search.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class BookSearchComponent implements OnInit {
+export class BookSearchComponent implements OnInit, OnDestroy {
   books$: Observable<BookEntity[]>;
   totalItems$: Observable<number>;
   isLoading$: Observable<boolean>;
+  activatedRouteSubscription$: Subscription;
   formParams: QueryParams;
 
   constructor(
@@ -31,11 +37,12 @@ export class BookSearchComponent implements OnInit {
   ngOnInit(): void {
     this._bookFacade.initSearchBookPage();
 
-    this._activatedRoute.queryParams.subscribe((params) => {
-      if (params && Object.keys(params).length !== 0) {
-        this.formParams = { ...params } as QueryParams;
-      }
-    });
+    this.activatedRouteSubscription$ =
+      this._activatedRoute.queryParams.subscribe((params) => {
+        if (params && Object.keys(params).length !== 0) {
+          this.formParams = { ...params } as QueryParams;
+        }
+      });
 
     this.totalItems$ = this._bookFacade.totalItems$;
     this.isLoading$ = this._bookFacade.bookLoaded$;
@@ -65,6 +72,10 @@ export class BookSearchComponent implements OnInit {
 
     this._bookFacade.searchBook(params);
     this.setRouterQueryParams(params);
+  }
+
+  ngOnDestroy(): void {
+    this.activatedRouteSubscription$?.unsubscribe();
   }
 
   private calculateStartIndex(
