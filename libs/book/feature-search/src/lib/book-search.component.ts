@@ -1,13 +1,8 @@
-import {
-  Component,
-  ChangeDetectionStrategy,
-  OnInit,
-  OnDestroy,
-} from '@angular/core';
+import { Component, ChangeDetectionStrategy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { PageEvent } from '@angular/material/paginator';
-import { Observable, Subscription } from 'rxjs';
-import { take } from 'rxjs/operators';
+import { Observable, of } from 'rxjs';
+import { switchMap } from 'rxjs/operators';
 
 import {
   QueryParams,
@@ -21,11 +16,10 @@ import {
   styleUrls: ['./book-search.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class BookSearchComponent implements OnInit, OnDestroy {
+export class BookSearchComponent implements OnInit {
   books$: Observable<BookEntity[]>;
   totalItems$: Observable<number>;
   isLoading$: Observable<boolean>;
-  subscription$: Subscription;
   formParams: QueryParams;
 
   constructor(
@@ -36,9 +30,6 @@ export class BookSearchComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this._bookFacade.initSearchBookPage();
-    this.books$ = this._bookFacade.books$;
-    this.totalItems$ = this._bookFacade.totalItems$;
-    this.isLoading$ = this._bookFacade.bookLoaded$;
 
     this._activatedRoute.queryParams.subscribe((params) => {
       if (params && Object.keys(params).length !== 0) {
@@ -46,11 +37,17 @@ export class BookSearchComponent implements OnInit, OnDestroy {
       }
     });
 
-    this.subscription$ = this.books$.pipe(take(1)).subscribe((books) => {
-      if (this.formParams && !books.length) {
-        this.search(this.formParams);
-      }
-    });
+    this.totalItems$ = this._bookFacade.totalItems$;
+    this.isLoading$ = this._bookFacade.bookLoaded$;
+    this.books$ = this._bookFacade.books$.pipe(
+      switchMap((books) => {
+        if (this.formParams && !books.length) {
+          this.search(this.formParams);
+        }
+
+        return of(books);
+      })
+    );
   }
 
   search(params: QueryParams): void {
@@ -68,10 +65,6 @@ export class BookSearchComponent implements OnInit, OnDestroy {
 
     this._bookFacade.searchBook(params);
     this.setRouterQueryParams(params);
-  }
-
-  ngOnDestroy(): void {
-    this.subscription$.unsubscribe();
   }
 
   private calculateStartIndex(
