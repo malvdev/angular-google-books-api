@@ -46,7 +46,7 @@ export class BookSearchComponent implements OnInit, OnDestroy {
     });
 
     this.subscription$ = this.books$.pipe(take(1)).subscribe((books) => {
-      if (!books.length) {
+      if (this.formParams && !books.length) {
         this.search(this.formParams);
       }
     });
