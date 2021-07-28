@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
-import { BookEntity, VolumeId } from '../entities';
+import { BookEntity, VolumeId } from '../../entities';
 
 export const API_PATH = 'https://www.googleapis.com/books/v1/volumes';
 

@@ -155,7 +155,7 @@
       "projectType": "application",
       "root": "apps/shell",
       "sourceRoot": "apps/shell/src",
-      "prefix": "app",
+      "prefix": "app-shell",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",

@@ -23,7 +23,13 @@
       *ngIf="thumbnail; else placeholder"
       class="app-book-single__img-wrapper"
     >
-      <img [src]="thumbnail" class="app-book-single__img" alt="Book image" />
+      <img
+        [src]="thumbnail"
+        class="app-book-single__img"
+        width="160"
+        height="185px"
+        alt="Thumbnail for book"
+      />
     </div>
     <ng-template #placeholder>
       <div class="app-book-single__placeholder">No image</div>

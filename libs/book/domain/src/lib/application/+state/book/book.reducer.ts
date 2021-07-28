@@ -6,10 +6,14 @@ import { BookEntity } from '../../../entities';
 
 export const BOOK_FEATURE_KEY = 'book';
 
+export interface BookError {
+  error: { message: string };
+}
+
 export interface State extends EntityState<BookEntity> {
   totalItems: number;
   loaded: boolean;
-  error?: string | null | Error;
+  error?: null | BookError;
 }
 
 export interface BookPartialState {
@@ -26,6 +30,11 @@ export const initialState: State = bookAdapter.getInitialState({
 
 const bookReducer = createReducer(
   initialState,
+  on(BookActions.initSearchBookPage, (state) => ({
+    ...state,
+    loaded: true,
+    error: null,
+  })),
   on(BookActions.searchBook, (state) => ({
     ...state,
     loaded: false,
@@ -41,6 +50,7 @@ const bookReducer = createReducer(
   ),
   on(BookActions.searchBookFailure, (state, { error }) => ({
     ...state,
+    loaded: true,
     error,
   })),
   on(BookActions.loadBookSuccess, (state, { book }) =>
@@ -50,7 +60,11 @@ const bookReducer = createReducer(
       error: null,
     })
   ),
-  on(BookActions.loadBookFailure, (state, { error }) => ({ ...state, error }))
+  on(BookActions.loadBookFailure, (state, { error }) => ({
+    ...state,
+    loaded: true,
+    error,
+  }))
 );
 
 export function reducer(state: State | undefined, action: Action) {

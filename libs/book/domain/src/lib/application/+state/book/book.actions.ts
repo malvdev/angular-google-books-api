@@ -2,6 +2,11 @@ import { createAction, props } from '@ngrx/store';
 
 import { BookEntity, VolumeId } from '../../../entities';
 import { BooksResponse, QueryParams } from '../../../infrastructure';
+import { BookError } from './book.reducer';
+
+export const initSearchBookPage = createAction(
+  '[book-search] Init Search Book Page'
+);
 
 export const searchBook = createAction(
   '[book-search] Search book',
@@ -15,7 +20,7 @@ export const searchBookSuccess = createAction(
 
 export const searchBookFailure = createAction(
   '[book-search/API] Search Book Failure',
-  props<{ error: Error }>()
+  props<{ error: BookError }>()
 );
 
 export const loadBook = createAction(
@@ -30,5 +35,5 @@ export const loadBookSuccess = createAction(
 
 export const loadBookFailure = createAction(
   '[book/API] Load Book Failure',
-  props<{ error: Error }>()
+  props<{ error: BookError }>()
 );

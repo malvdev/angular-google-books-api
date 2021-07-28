@@ -53,8 +53,8 @@ export class BookSingleComponent {
 
   get thumbnail(): string | undefined {
     return (
-      this.book.volumeInfo.imageLinks?.small ||
-      this.book.volumeInfo.imageLinks?.smallThumbnail
+      this.book.volumeInfo.imageLinks?.smallThumbnail ||
+      this.book.volumeInfo.imageLinks?.small
     );
   }
 }

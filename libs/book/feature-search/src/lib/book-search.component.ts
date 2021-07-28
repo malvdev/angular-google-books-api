@@ -7,7 +7,6 @@ import {
 import { ActivatedRoute, Router } from '@angular/router';
 import { PageEvent } from '@angular/material/paginator';
 import { Observable, Subscription } from 'rxjs';
-import { take } from 'rxjs/operators';
 
 import {
   QueryParams,
@@ -24,8 +23,8 @@ import {
 export class BookSearchComponent implements OnInit, OnDestroy {
   books$: Observable<BookEntity[]>;
   totalItems$: Observable<number>;
-  isLoading$: Observable<boolean>;
-  subscription$: Subscription;
+  isLoaded$: Observable<boolean>;
+  activatedRouteSubscription$: Subscription;
   formParams: QueryParams;
 
   constructor(
@@ -35,21 +34,22 @@ export class BookSearchComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit(): void {
-    this.books$ = this._bookFacade.books$;
+    this._bookFacade.initSearchBookPage();
+
+    this.activatedRouteSubscription$ =
+      this._activatedRoute.queryParams.subscribe((params) => {
+        if (params && Object.keys(params).length !== 0) {
+          this.formParams = { ...params } as QueryParams;
+        }
+      });
+
+    if (this.formParams?.q) {
+      this.search(this.formParams);
+    }
+
     this.totalItems$ = this._bookFacade.totalItems$;
-    this.isLoading$ = this._bookFacade.bookLoaded$;
-
-    this._activatedRoute.queryParams.subscribe((params) => {
-      if (params && Object.keys(params).length !== 0) {
-        this.formParams = { ...params } as QueryParams;
-      }
-    });
-
-    this.subscription$ = this.books$.pipe(take(1)).subscribe((books) => {
-      if (this.formParams && !books.length) {
-        this.search(this.formParams);
-      }
-    });
+    this.isLoaded$ = this._bookFacade.bookLoaded$;
+    this.books$ = this._bookFacade.books$;
   }
 
   search(params: QueryParams): void {
@@ -70,7 +70,7 @@ export class BookSearchComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.subscription$.unsubscribe();
+    this.activatedRouteSubscription$?.unsubscribe();
   }
 
   private calculateStartIndex(

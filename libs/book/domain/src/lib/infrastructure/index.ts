@@ -1,1 +1,2 @@
-export * from './book.service';
+export * from './guards';
+export * from './services';
