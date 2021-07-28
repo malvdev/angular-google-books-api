@@ -8,17 +8,23 @@
   </div>
 </header>
 <app-shared-ui-main-template class="app-main-template">
-  <ng-container *ngIf="(books$ | async)?.items?.length; else noBooks">
-    <app-ui-book-item-list
-      [books]="(books$ | async)?.items || []"
-    ></app-ui-book-item-list>
+  <ng-container *ngIf="isLoading$ | async; else isLoading">
+    <ng-container *ngIf="books$ | async as books">
+      <app-ui-book-item-list
+        *ngIf="books.length; else noBooks"
+        [books]="books"
+      ></app-ui-book-item-list>
+    </ng-container>
+
+    <mat-paginator
+      *ngIf="totalItems$ | async"
+      [length]="(totalItems$ | async) || 0"
+      [pageSize]="10"
+      [pageIndex]="formParams?.pageIndex || 0"
+      (page)="handlePageEvent($event)"
+    >
+    </mat-paginator>
   </ng-container>
-  <mat-paginator
-    [length]="(books$ | async)?.totalItems || 0"
-    [pageSize]="10"
-    (page)="handlePageEvent($event)"
-  >
-  </mat-paginator>
 </app-shared-ui-main-template>
 
 <ng-template #isLoading>
