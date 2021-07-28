@@ -13,6 +13,7 @@ export class BookFacade {
   books$ = this._store.select(BookSelectors.getAllBook);
   totalItems$ = this._store.select(BookSelectors.getBookTotalItems);
   bookLoaded$ = this._store.select(BookSelectors.getBookLoaded);
+  error$ = this._store.select(BookSelectors.getBookError);
 
   constructor(private readonly _store: Store) {}
 

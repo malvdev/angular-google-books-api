@@ -3,7 +3,7 @@ import * as BookSelectors from './book.selectors';
 import { BookEntity } from '../../../entities';
 
 describe('Book Selectors', () => {
-  const ERROR_MSG = 'No Error Available';
+  const ERROR_MSG = { error: { message: 'No Error Available' } };
   const getBookId = (it: BookEntity) => it.id;
   const createBookEntity = (id: string) => ({
     id,

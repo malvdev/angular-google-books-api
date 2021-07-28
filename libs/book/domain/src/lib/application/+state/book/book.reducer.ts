@@ -6,10 +6,14 @@ import { BookEntity } from '../../../entities';
 
 export const BOOK_FEATURE_KEY = 'book';
 
+export interface BookError {
+  error: { message: string };
+}
+
 export interface State extends EntityState<BookEntity> {
   totalItems: number;
   loaded: boolean;
-  error?: string | null | Error;
+  error?: null | BookError;
 }
 
 export interface BookPartialState {
@@ -46,7 +50,7 @@ const bookReducer = createReducer(
   ),
   on(BookActions.searchBookFailure, (state, { error }) => ({
     ...state,
-    loaded: false,
+    loaded: true,
     error,
   })),
   on(BookActions.loadBookSuccess, (state, { book }) =>
@@ -58,7 +62,7 @@ const bookReducer = createReducer(
   ),
   on(BookActions.loadBookFailure, (state, { error }) => ({
     ...state,
-    loaded: false,
+    loaded: true,
     error,
   }))
 );
