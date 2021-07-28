@@ -29,14 +29,12 @@ export class BookService {
 
   searchBooks(params: QueryParams): Observable<BooksResponse> {
     const query = this.encodeQuery(params);
-    return this._http
-      .get<BooksResponse>(`${this._apiPath}?${query}`)
-      .pipe(
-        map((books) => ({
-          totalItems: books.totalItems,
-          items: books.items || [],
-        }))
-      );
+    return this._http.get<BooksResponse>(`${this._apiPath}?${query}`).pipe(
+      map((books) => ({
+        totalItems: books.totalItems,
+        items: books.items || [],
+      }))
+    );
   }
 
   retrieveBook(volumeId: VolumeId): Observable<BookEntity> {
