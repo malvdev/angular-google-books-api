@@ -6,8 +6,7 @@ import {
 } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { PageEvent } from '@angular/material/paginator';
-import { Observable, of, Subscription } from 'rxjs';
-import { switchMap, take } from 'rxjs/operators';
+import { Observable, Subscription } from 'rxjs';
 
 import {
   QueryParams,
@@ -44,17 +43,13 @@ export class BookSearchComponent implements OnInit, OnDestroy {
         }
       });
 
+    if (this.formParams?.q) {
+      this.search(this.formParams);
+    }
+
     this.totalItems$ = this._bookFacade.totalItems$;
     this.isLoaded$ = this._bookFacade.bookLoaded$;
-    this.books$ = this._bookFacade.books$.pipe(
-      switchMap((books) => {
-        if (this.formParams && !books.length) {
-          this.search(this.formParams);
-        }
-
-        return of(books);
-      })
-    );
+    this.books$ = this._bookFacade.books$;
   }
 
   search(params: QueryParams): void {
