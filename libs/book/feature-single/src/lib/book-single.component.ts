@@ -1,7 +1,6 @@
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Observable, of } from 'rxjs';
-import { switchMap } from 'rxjs/operators';
+import { Observable } from 'rxjs';
 
 import { BookEntity, BookFacade } from '@libs/google-books-api/book/domain';
 
@@ -22,14 +21,6 @@ export class BookSingleComponent implements OnInit {
 
   ngOnInit(): void {
     this.id = this._activatedRoute.snapshot.params.id;
-    this.book$ = this._bookFacade.getBookByID(this.id).pipe(
-      switchMap((book) => {
-        if (!book) {
-          this._bookFacade.loadBook(this.id);
-        }
-
-        return of(book);
-      })
-    );
+    this.book$ = this._bookFacade.getBookByID(this.id);
   }
 }

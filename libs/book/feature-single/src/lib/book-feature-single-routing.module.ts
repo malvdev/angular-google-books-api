@@ -1,9 +1,17 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
+import { BookExistsGuard } from '@libs/google-books-api/book/domain';
+
 import { BookSingleComponent } from './book-single.component';
 
-const routes: Routes = [{ path: 'book/:id', component: BookSingleComponent }];
+const routes: Routes = [
+  {
+    path: 'book/:id',
+    component: BookSingleComponent,
+    canActivate: [BookExistsGuard],
+  },
+];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
