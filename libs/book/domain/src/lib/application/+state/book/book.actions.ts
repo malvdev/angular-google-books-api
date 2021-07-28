@@ -3,6 +3,10 @@ import { createAction, props } from '@ngrx/store';
 import { BookEntity, VolumeId } from '../../../entities';
 import { BooksResponse, QueryParams } from '../../../infrastructure';
 
+export const initSearchBookPage = createAction(
+  '[book-search] Init Search Book Page'
+);
+
 export const searchBook = createAction(
   '[book-search] Search book',
   props<{ params: QueryParams }>()

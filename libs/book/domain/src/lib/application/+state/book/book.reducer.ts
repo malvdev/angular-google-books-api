@@ -26,6 +26,11 @@ export const initialState: State = bookAdapter.getInitialState({
 
 const bookReducer = createReducer(
   initialState,
+  on(BookActions.initSearchBookPage, (state) => ({
+    ...state,
+    loaded: true,
+    error: null,
+  })),
   on(BookActions.searchBook, (state) => ({
     ...state,
     loaded: false,
@@ -41,6 +46,7 @@ const bookReducer = createReducer(
   ),
   on(BookActions.searchBookFailure, (state, { error }) => ({
     ...state,
+    loaded: false,
     error,
   })),
   on(BookActions.loadBookSuccess, (state, { book }) =>
@@ -50,7 +56,11 @@ const bookReducer = createReducer(
       error: null,
     })
   ),
-  on(BookActions.loadBookFailure, (state, { error }) => ({ ...state, error }))
+  on(BookActions.loadBookFailure, (state, { error }) => ({
+    ...state,
+    loaded: false,
+    error,
+  }))
 );
 
 export function reducer(state: State | undefined, action: Action) {
