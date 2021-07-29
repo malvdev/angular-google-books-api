@@ -1,14 +1,20 @@
 # Angular Google Books Api
 
+Angular app that uses Google book API to search and get information about books.
+
+## Install
+
+Clone the repository.
+
+Run `npm install` to install the dependencies.
+
+Run `npm run prepare` to init husky.
+
 ## Development server
 
 Run `ng serve shell` for a dev server.
 
 Navigate to http://localhost:4200/. The app will automatically reload if you change any of the source files.
-
-## Code scaffolding
-
-Run `ng g component my-component --project=shell` to generate a new component.
 
 ## Build
 
