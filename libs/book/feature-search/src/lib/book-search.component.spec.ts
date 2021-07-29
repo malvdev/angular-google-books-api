@@ -11,7 +11,10 @@ import {
   BookItemListModule,
   SearchFormModule,
 } from '@libs/google-books-api/book/ui';
-import { BookFacade } from '@libs/google-books-api/book/domain';
+import {
+  BookFacade,
+  RouterQueryService,
+} from '@libs/google-books-api/book/domain';
 
 import { BookSearchComponent } from './book-search.component';
 
@@ -33,6 +36,7 @@ describe('BookSearchComponent', () => {
       providers: [
         provideMockStore({}),
         BookFacade,
+        RouterQueryService,
         {
           provide: ActivatedRoute,
           useValue: {

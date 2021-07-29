@@ -9,7 +9,11 @@ import {
   BookEffects,
 } from './application/+state/book';
 
-import { BookService, BookExistsGuard } from './infrastructure';
+import {
+  BookService,
+  BookExistsGuard,
+  RouterQueryService,
+} from './infrastructure';
 import { BookFacade } from './application';
 
 @NgModule({
@@ -18,6 +22,6 @@ import { BookFacade } from './application';
     StoreModule.forFeature(BOOK_FEATURE_KEY, BookReducer),
     EffectsModule.forFeature([BookEffects]),
   ],
-  providers: [BookService, BookFacade, BookExistsGuard],
+  providers: [BookService, RouterQueryService, BookFacade, BookExistsGuard],
 })
 export class BookDomainModule {}

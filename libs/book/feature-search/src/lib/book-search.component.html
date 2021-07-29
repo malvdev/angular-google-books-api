@@ -21,7 +21,7 @@
       [length]="(totalItems$ | async) || 0"
       [pageSize]="10"
       [pageIndex]="formParams?.pageIndex || 0"
-      (page)="handlePageEvent($event)"
+      (page)="handlePagination($event)"
     >
     </mat-paginator>
   </ng-container>
