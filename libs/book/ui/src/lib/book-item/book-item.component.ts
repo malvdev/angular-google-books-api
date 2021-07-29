@@ -36,6 +36,6 @@ export class BookItemComponent {
     return (
       this.book.volumeInfo.imageLinks?.thumbnail ||
       this.book.volumeInfo.imageLinks?.smallThumbnail
-    );
+    )?.replace('http:', 'https:');
   }
 }

@@ -7,7 +7,7 @@ import {
 import { ActivatedRoute } from '@angular/router';
 import { PageEvent } from '@angular/material/paginator';
 import { Observable, of, Subscription } from 'rxjs';
-import { switchMap } from 'rxjs/operators';
+import { switchMap, take } from 'rxjs/operators';
 
 import {
   QueryParams,
@@ -49,6 +49,7 @@ export class BookSearchComponent implements OnInit, OnDestroy {
     this.totalItems$ = this._bookFacade.totalItems$;
     this.isLoaded$ = this._bookFacade.bookLoaded$;
     this.books$ = this._bookFacade.books$.pipe(
+      take(1),
       switchMap((books) => {
         if (this.formParams?.q && !books.length) {
           this.search(this.formParams);
