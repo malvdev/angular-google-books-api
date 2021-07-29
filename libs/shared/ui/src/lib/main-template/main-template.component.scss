@@ -5,7 +5,7 @@
   flex-direction: column;
   margin: 0 auto;
   padding: 1rem;
-  max-width: 680px;
+  max-width: var(--container);
   width: 100%;
   box-sizing: border-box;
 }

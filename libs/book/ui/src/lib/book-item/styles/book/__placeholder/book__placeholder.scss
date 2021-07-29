@@ -4,7 +4,7 @@
   justify-content: center;
   width: 120px;
   height: 158px;
-  border: 1px #dfe1e5 solid;
-  color: #70757a;
+  border: var( --border);
+  color: var(--secondary);
   line-height: 1.2rem;
 }
