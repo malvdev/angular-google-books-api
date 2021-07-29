@@ -56,6 +56,6 @@ export class BookSingleComponent {
     return (
       this.book.volumeInfo.imageLinks?.smallThumbnail ||
       this.book.volumeInfo.imageLinks?.small
-    );
+    )?.replace('http:', 'https:');
   }
 }
