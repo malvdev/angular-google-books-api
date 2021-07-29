@@ -1,0 +1,32 @@
+{
+  "compileOnSave": false,
+  "compilerOptions": {
+    "rootDir": ".",
+    "sourceMap": true,
+    "declaration": false,
+    "moduleResolution": "node",
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "importHelpers": true,
+    "target": "es2015",
+    "strictPropertyInitialization": false,
+    "module": "esnext",
+    "lib": ["es2017", "dom"],
+    "skipLibCheck": true,
+    "skipDefaultLibCheck": true,
+    "baseUrl": ".",
+    "paths": {
+      "@libs/google-books-api/book/domain": ["libs/book/domain/src/index.ts"],
+      "@libs/google-books-api/book/feature-search": [
+        "libs/book/feature-search/src/index.ts"
+      ],
+      "@libs/google-books-api/book/feature-single": [
+        "libs/book/feature-single/src/index.ts"
+      ],
+      "@libs/google-books-api/book/ui": ["libs/book/ui/src/index.ts"],
+      "@libs/google-books-api/shared/pipes": ["libs/shared/pipes/src/index.ts"],
+      "@libs/google-books-api/shared/ui": ["libs/shared/ui/src/index.ts"]
+    }
+  },
+  "exclude": ["node_modules", "tmp"]
+}

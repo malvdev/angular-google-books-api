@@ -1,0 +1,56 @@
+{
+  "npmScope": "angular-google-books-api",
+  "affected": {
+    "defaultBase": "master"
+  },
+  "implicitDependencies": {
+    "package.json": {
+      "dependencies": "*",
+      "devDependencies": "*"
+    },
+    ".eslintrc.json": "*"
+  },
+  "tasksRunnerOptions": {
+    "default": {
+      "runner": "@nrwl/workspace/tasks-runners/default",
+      "options": {
+        "cacheableOperations": ["build", "lint", "test", "e2e"]
+      }
+    }
+  },
+  "targetDependencies": {
+    "build": [
+      {
+        "target": "build",
+        "projects": "dependencies"
+      }
+    ]
+  },
+  "projects": {
+    "book-domain": {
+      "tags": []
+    },
+    "book-feature-search": {
+      "tags": []
+    },
+    "book-feature-single": {
+      "tags": []
+    },
+    "book-ui": {
+      "tags": []
+    },
+    "shared-pipes": {
+      "tags": []
+    },
+    "shared-ui": {
+      "tags": []
+    },
+    "shell": {
+      "tags": []
+    },
+    "shell-e2e": {
+      "tags": [],
+      "implicitDependencies": ["shell"]
+    }
+  }
+}

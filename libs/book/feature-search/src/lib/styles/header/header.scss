@@ -1,0 +1,16 @@
+@import './__container/header__container.scss';
+@import './__logo/header__logo.scss';
+
+.app-header {
+  position: fixed;
+  top: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  width: 100%;
+  background: var(--background);
+  overflow: hidden;
+  box-sizing: border-box;
+  z-index: 1;
+}

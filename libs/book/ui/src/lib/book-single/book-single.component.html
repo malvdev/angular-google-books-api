@@ -1,0 +1,63 @@
+<article class="app-book-single">
+  <div class="app-book-single__header">
+    <div class="app-book-single__info">
+      <h2 class="app-book-single__title">{{ title }}</h2>
+      <div class="app-book-single__authors">
+        <span *ngFor="let author of authors" class="app-book-single__author">
+          {{ author }}
+        </span>
+        <span *ngIf="publishedDate" title="Published date">
+          · {{ publishedDate | date: 'Y' }}
+        </span>
+      </div>
+      <div *ngIf="categories?.length" class="app-book-single__meta">
+        <span
+          *ngFor="let category of categories"
+          class="app-book-single__category"
+        >
+          {{ category }}
+        </span>
+      </div>
+    </div>
+    <div
+      *ngIf="thumbnail; else placeholder"
+      class="app-book-single__img-wrapper"
+    >
+      <img
+        [src]="thumbnail"
+        class="app-book-single__img"
+        width="160"
+        height="185px"
+        alt="Thumbnail for book"
+      />
+    </div>
+    <ng-template #placeholder>
+      <div class="app-book-single__placeholder">No image</div>
+    </ng-template>
+  </div>
+  <div class="app-book-single__details">
+    <div class="app-book-single__meta-box">
+      <div *ngIf="industryIdentifiers?.length" class="app-book-single__meta">
+        <span class="app-book-single__meta-label">ISBN:</span>
+        <span
+          *ngFor="let isbn of industryIdentifiers"
+          class="app-book-single__isbn"
+        >
+          {{ isbn.identifier }}
+        </span>
+      </div>
+      <div *ngIf="pageCount" class="app-book-single__meta">
+        <span class="app-book-single__meta-label">Page count:</span>
+        {{ pageCount }}
+      </div>
+      <div *ngIf="publisher" class="app-book-single__meta">
+        <span class="app-book-single__meta-label">Publisher:</span>
+        {{ publisher }}
+      </div>
+    </div>
+    <p
+      [innerHtml]="description || 'No description'"
+      class="app-book-single__description"
+    ></p>
+  </div>
+</article>
